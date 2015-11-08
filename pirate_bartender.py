@@ -1,3 +1,7 @@
+import random
+from subprocess import call
+
+
 questions = {
 	"strong": "Do ye like yer drinks strong?",
 	"salty": "Do ye like it with a salty tang?",
@@ -14,17 +18,45 @@ ingredients = {
 	"fruity": ["slice of orange", "dash of cassis", "cherry on top"]
 	}
 
-def make_drink():
+
+
+def order_drink():
+	
+	drink_order = {'customer_name':'','strong':'','salty':'','bitter':'','sweet':'','fruity':''}
 	customer_name = input("Hello Sir! What is your name? ")
-	print(customer_name)
+	drink_order["customer_name"] = customer_name
+	print(drink_order["customer_name"])
 	print("\n")
 
-	for values in questions.values():
-		print(values)
+	for key in questions:
+		
+		while drink_order[key] != "YES" and drink_order[key] != "NO":
+			call(["clear"])
+			print("Please answer yes or no")
+			drink_order[key] = input(questions[key]).upper()
+			if drink_order[key] == 'Y':
+				drink_order[key] = 'YES'
+			if drink_order[key] == 'N':
+				drink_order[key] = 'NO'
+
+	return(drink_order)
 
 
+def make_drink(customer_order):
+	drink_made = dict(strong='',salty='',bitter='',sweet='',fruity='')	
+	for key in customer_order:
+		if customer_order[key] == "YES":
+			drink_made[key] = random.choice(ingredients[key])
 
+	return(drink_made)
+		
+if __name__ == '__main__':
 
-	
+	call(["clear"])
+	drink_order = order_drink()
+	drink_made = make_drink(drink_order)
+	print(drink_order["customer_name"])
 
+	print("\n Drink Ordered: " + str(drink_order))
 
+	print("\n Drink Made: " + str(drink_made.values())) 
