@@ -21,7 +21,7 @@ ingredients = {
 
 
 def order_drink():
-	
+	"""Function to ask the customer what characteristics they would like in their drink"""	
 	drink_order = {'customer_name':'','strong':'','salty':'','bitter':'','sweet':'','fruity':''}
 	customer_name = input("Hello Sir! What is your name? ")
 	drink_order["customer_name"] = customer_name
@@ -43,6 +43,7 @@ def order_drink():
 
 
 def make_drink(customer_order):
+	"""Function used to create drink from flavors selected by customer"""
 	drink_made = dict(strong='',salty='',bitter='',sweet='',fruity='')	
 	for key in customer_order:
 		if customer_order[key] == "YES":
