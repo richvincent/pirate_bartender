@@ -57,6 +57,29 @@ if __name__ == '__main__':
 	drink_made = make_drink(drink_order)
 	print(drink_order["customer_name"])
 
-	print("\n Drink Ordered: " + str(drink_order))
+	#print("\n Drink Ordered: " + str(drink_order))
 
-	print("\n Drink Made: " + str(drink_made.values())) 
+	#print("\n Drink Made: " + str(drink_made.values()))
+	
+	drink = []
+	for key in drink_made:
+		if drink_made[key] != '':
+			drink.append(drink_made[key])
+
+
+call(['clear'])
+print('Your drink your majesty!')
+number_of_ingredients = len(drink)
+display_drink = ''
+num = 1
+for ingredient in drink:
+	if num < number_of_ingredients:
+		display_drink += ingredient
+		display_drink += ', '
+		num += 1
+	else:
+		display_drink += ' with '
+		display_drink += ingredient
+
+print(display_drink)
+	
